@@ -25,7 +25,7 @@
 					<a class="nav-link" href="index.jsp">전시회</a>
 				</li>				
 				<li class="nav-item active">
-					<a class="nav-link" href="index.jsp">관람 후기</a>
+					<a class="nav-link" href="userComment.jsp">관람 후기</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">
