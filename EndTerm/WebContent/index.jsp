@@ -11,7 +11,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
-		
+		<!-- commit trial -->
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
 		
