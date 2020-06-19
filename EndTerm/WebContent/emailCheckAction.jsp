@@ -6,6 +6,9 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String code = null;
+	if(request.getParameter("code") != null) {
+		code = request.getParameter("code");
+	}
 	userDAO UserDAO = new userDAO();
 	String userID= null;
 	if(session.getAttribute("userID") != null) {
