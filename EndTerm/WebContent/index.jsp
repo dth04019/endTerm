@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="user.userDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +12,32 @@
 	<link type="text/css" rel="stylesheet" href="./css/custom.css">
 </head>
 <body>
+	<%
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String)session.getAttribute("userID");
+		}
+		if(userID == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 해주세요.');");
+			script.println("location.href = 'userLogin.jsp'");
+			script.println("</script>");
+			script.close();
+			return;
+		}
+		boolean emailChecked = new userDAO().getUserEmailChecked(userID);
+		if(emailChecked == false) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("location.href = 'emailSendConfirm.jsp'");
+			script.println("</script>");
+			script.close();
+			return;
+		}
+	%>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
-		<!-- commit trial@@ -->
+		<!-- commit trial -->
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
 		
@@ -32,9 +58,18 @@
 						회원 관리
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
+						<%
+							if(userID == null) {
+						%>
 						<a class="dropdown-item" href="userLogin.jsp">로그인</a>
 						<a class="dropdown-item" href="userJoin.jsp">회원가입</a>
+						<%
+							} else {
+						%>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
+						<%
+							}
+						%>
 					</div>
 				</li>
 			</ul>
