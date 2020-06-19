@@ -38,16 +38,16 @@
 		return;
 	}
 	
-	String host = "http://localhost:8080/finalProject/index.jsp";
+	String host = "http://localhost:8080/finalProject/";
 	String from = "htt0099@gmail.com";
 	String to = UserDAO.getUserEmail(userID);
 	String subject = "회원가입을 위한 이메인 일증 메일입니다.";
-	String content = "다음 링크에 접속하여 이메일 인증을 진행하세요."
-			+ "<a href ='" + host + "emailCheckAction.jsp?code=" + new SHA256().getSHA256(to) + ">'이메일 인증하기</a>";
+	String content = "다음 링크에 접속하여 이메일 인증을 진행하세요." + 
+			"<a href ='" + host + "emailCheckAction.jsp?code=" + new SHA256().getSHA256(to) + ">'이메일 인증하기</a>";
 			
 	Properties p = new Properties();
 	p.put("mail.smtp.user", from);
-	p.put("mail.smtp.host", "stmp.google mail.com");
+	p.put("mail.smtp.host", "smtp.googlemail.com");
 	p.put("mail.smtp.port", "465");
 	p.put("mail.smtp.starttls.enable", "true");
 	p.put("mail.smtp.auth", "true");
@@ -90,7 +90,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
-		
+		<!-- commit trial -->
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
 		
@@ -100,20 +100,29 @@
 			</form>
 			
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a class="nav-link" href="index.jsp">전시회</a>
 				</li>				
-				<li class="nav-item">
-					<a class="nav-link" href="index.jsp">관람 후기</a>
+				<li class="nav-item active">
+					<a class="nav-link" href="userComment.jsp">관람 후기</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">
 						회원 관리
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
-						<a class="dropdown-item active" href="userLogin.jsp">로그인</a>
+						<%
+							if(userID == null) {
+						%>
+						<a class="dropdown-item" href="userLogin.jsp">로그인</a>
 						<a class="dropdown-item" href="userJoin.jsp">회원가입</a>
+						<%
+							} else {
+						%>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
+						<%
+							}
+						%>
 					</div>
 				</li>
 			</ul>
