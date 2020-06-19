@@ -7,8 +7,8 @@ public class databaseUtil {
 
 	public static Connection getConnection() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/jspbookdb?serverTimezone=UTC";
-			String dbID = "root";
+			String dbURL = "jdbc:mysql://jspendterm.clctnyh4pdaa.ap-northeast-2.rds.amazonaws.com:3306/jspendterm";
+			String dbID = "admin";
 			String dbPassword = "asas1020as";
 			Class.forName("com.mysql.jdbc.Driver");
 			return DriverManager.getConnection(dbURL, dbID, dbPassword);
