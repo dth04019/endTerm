@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="comment.commentDAO" %>
+<%@ page import="comment.commentDTO" %>
+<%@ page import="gallery.galleryDAO" %>
+<%@ page import="gallery.galleryDTO" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +13,11 @@
 	<title>Insert title here</title>
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="./css/custom.css">
+	<style>
+		.card-body{
+			margin-bottom: 10px;
+		}
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
@@ -45,38 +55,46 @@
 	</nav>
 	<section class="container">
 		<form method="get" action="./index.jsp" class="form-inline mt-3">
-			<select name="LectureDivide" class="form-control mx-1mt-2">
-				<option value="전체">전체</option>
-				<option value="전공">전공</option>
-				<option value="교양">교양</option>
-				<option value="기타">기타</option>
-			</select>
 			<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요">
 			<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
 			<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal">등록하기</a>
 			<a class="btn btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고</a>
 		</form>
 		
+			<%
+				ArrayList <commentDTO> commentList = new ArrayList<commentDTO>();
+				commentList = new commentDAO().getList();
+			
+				if(commentList != null)
+					for(int i = 0; i < commentList.size(); i++){
+					
+						commentDTO comment = commentList.get(i);
+						int galleryID = comment.getGalleryID();
+
+						galleryDTO gallery = new galleryDTO();
+						gallery = new galleryDAO().getGallery(galleryID);
+						
+			%>
 		<div class="card bg-light mt-3">
 			<div class="card-header bg-light">
 				<div class="row">
-					<div class="col-8 text-left">컴퓨터학개론&nbsp;<small>정연우</small></div>
+					<a href="GalleryDetail.jsp?galleryId=<%=galleryID %>" style="color:black" class="col-8 text-left"><%= gallery.getGalleryTitle() %><small>(<%= gallery.getGalleryAuthor() %>)</small></a>
 					<div class="col-4 text-right">
-						총합<span style="color: red;">A</span>
+						총합  <span style="color: red;"><%= comment.getCommentTotal() %> / 10.0</span>
 					</div>
 				</div>
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">
-					정말 좋은 강의입니다&nbsp;<small>(2017년 겨울학기)</small>
+					<%= comment.getCommentTitle() %><small> (<%= comment.getUserID() %>) </small>
 				</h5>
-				<p class="card-text">강의가 많이 널널해서 배운 것이 없습니다.</p>
+				<p class="card-text"> <%= comment.getCommentContent() %></p>
 				<div class="row">
 					<div class="col-9 text-left"> 
-						성적<span style="color: red;">A</span>
-						널널<span style="color: red;">A</span>
-						강의<span style="color: red;">A</span>
-						<span style="color: green;">(추천: 15)</span>
+						접근성<span>(</span><span style="color: red;"> <%= comment.getCommentAccessibility() %></span><span> / 10.0)</span>
+						예술성<span>(</span><span style="color: red;"> <%= comment.getCommentArt() %> </span><span> / 10.0)</span>
+						시설<span>(</span><span style="color: red;"> <%= comment.getCommentPlace() %></span><span> / 10.0)</span>
+						<span style="color: green;">(추천: <%= comment.getLikeCount() %>)</span>
 					</div>
 					<div class="col-3 text-right">
 						<a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
@@ -85,175 +103,65 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="card bg-light mt-3">
-			<div class="card-header bg-light">
-				<div class="row">
-					<div class="col-8 text-left">웹프로그래밍학개론&nbsp;<small>정연우</small></div>
-					<div class="col-4 text-right">
-						총합<span style="color: red;">A</span>
-					</div>
-				</div>
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">
-					쓰레기같은 강의입니다&nbsp;<small>(2020년 2학기)</small>
-				</h5>
-				<p class="card-text">강의가 많이 널널해서 배운 것이 없습니다.</p>
-				<div class="row">
-					<div class="col-9 text-left"> 
-						성적<span style="color: red;">A</span>
-						널널<span style="color: red;">A</span>
-						강의<span style="color: red;">A</span>
-						<span style="color: green;">(추천: 21)</span>
-					</div>
-					<div class="col-3 text-right">
-						<a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
-						<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="card bg-light mt-3">
-			<div class="card-header bg-light">
-				<div class="row">
-					<div class="col-8 text-left">c프로그래밍학개론&nbsp;<small>정연우</small></div>
-					<div class="col-4 text-right">
-						총합<span style="color: red;">A</span>
-					</div>
-				</div>
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">
-					우욱 강의입니다&nbsp;<small>(2016년 겨울학기)</small>
-				</h5>
-				<p class="card-text">강의가 많이 널널해서 배운 것이 없습니다.</p>
-				<div class="row">
-					<div class="col-9 text-left"> 
-						성적<span style="color: red;">A</span>
-						널널<span style="color: red;">A</span>
-						강의<span style="color: red;">A</span>
-						<span style="color: green;">(추천: 15)</span>
-					</div>
-					<div class="col-3 text-right">
-						<a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationID=">추천</a>
-						<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	
-	
+			<%
+					}
+			 %>		
+	</section>		
 	
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modal">평가 등록</h5>
+					<h5 class="modal-title" id="modal">후기 등록</h5>
 					<button type="button" class="close" data-dismiss = "modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button> 	
 				</div>
 				<div class="modal-body">
-					<form action="./evaluationRegisterAction.jsp" method="post">
-						<div class="form-row">
-							<div class="form-group col-sm-6">
-								<label>강의명</label>
-								<input type="text" name="LectureName" class="form-control" maxlength="20">								
-							</div>
-							<div class="form-group col-sm-6">
-								<label>교수명</label>
-								<input type="text" name="professorName" class="form-control" maxlength="20">							
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-sm-4">
-								<label>수강 년도</label>
-								<select name="lectureYear" class="form-control">
-									<option value="2011">2011</option>
-									<option value="2012">2012</option>
-									<option value="2013">2013</option>
-									<option value="2014">2014</option>
-									<option value="2015">2015</option>
-									<option value="2016">2016</option>
-									<option value="2017">2017</option>
-									<option value="2018" selected>2018</option>
-									<option value="2019">2019</option>
-									<option value="2020">2020</option>
-									<option value="2021">2021</option>
-									<option value="2022">2022</option>
-									<option value="2023">2023</option>
+					<form action="./commentRegisterAction.jsp" method="post">
+						<div class="form-group">
+								<label>전시회 선택</label>
+								<select name="galleryTitle" class="form-control">
+								<%
+									ArrayList <galleryDTO> galleryList = new ArrayList<galleryDTO>();
+									galleryList = new galleryDAO().getList();
+		
+									if(galleryList != null)
+										for(int i = 0; i < galleryList.size(); i++){
+				
+											galleryDTO gallery = galleryList.get(i);
+								%>	
+									<option value=<%= gallery.getGalleryID() %>><%= gallery.getGalleryTitle() %></option>
+								<%
+										}
+								%>
 								</select>
-							</div>
-							<div class="from-group col-sm-4">
-								<label>수강 학기</label>
-								<select name="semesterDivide" class="form-control">
-									<option value="1학기" selected>1학기</option>
-									<option value="여름학기">여름학기</option>
-									<option value="2학기">2학기</option>
-									<option value="겨울학기">겨울학기</option>
-								</select>
-							</div>
-							<div class="from-group col-sm-4">
-								<label>강의 구분</label>
-								<select name="lectureDivide" class="form-control">
-									<option value="전공" selected>전공</option>
-									<option value="교양">교양</option>
-									<option value="기타" >기타</option>
-								</select>
-							</div>
 						</div>
 						
 						<div class="form-group">
 							<label>제목</label>
-							<input type="text" name="evaluationTime" class="form-control" maxlength="30">
+							<input type="text" name="commentTitle" class="form-control" maxlength="30">
 						</div>
 						<div class="form-group">
 							<label>내용</label>
-							<textarea name="evaluationContent" class="form-control" maxlength="2048" style="height: 180px;">></textarea>
+							<textarea name="commentContent" class="form-control" maxlength="2048" style="height: 180px;">> </textarea>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-sm-3">
 								<label>종합</label>
-								<select name="totalScore" class="form-control">
-									<option value="A" selected>A</option>
-									<option value="B" selected>B</option>
-									<option value="C" selected>C</option>
-									<option value="D" selected>D</option>
-									<option value="F" selected>F</option>
-								</select>
+								<input type="text" name="commentTotal" class="form-control" maxlength="5"><span>/ 10.0</span>
 							</div>
 							<div class="form-group col-sm-3">
-								<label>성적</label>
-								<select name="creditScore" class="form-control">
-									<option value="A" selected>A</option>
-									<option value="B" selected>B</option>
-									<option value="C" selected>C</option>
-									<option value="D" selected>D</option>
-									<option value="F" selected>F</option>
-								</select>
+								<label>접근성</label>
+								<input type="text" name="commentAccessibility" class="form-control" maxlength="5"><span>/ 10.0</span>
 							</div>
 							<div class="form-group col-sm-3">
-								<label>널널</label>
-								<select name="comfortableScore" class="form-control">
-									<option value="A" selected>A</option>
-									<option value="B" selected>B</option>
-									<option value="C" selected>C</option>
-									<option value="D" selected>D</option>
-									<option value="F" selected>F</option>
-								</select>
+								<label>예술성</label>	
+								<input type="text" name="commentArt" class="form-control" maxlength="5"><span>/ 10.0</span>
 							</div>
 							<div class="form-group col-sm-3">
-								<label>강의</label>
-								<select name="lectureScore" class="form-control">
-									<option value="A" selected>A</option>
-									<option value="B" selected>B</option>
-									<option value="C" selected>C</option>
-									<option value="D" selected>D</option>
-									<option value="F" selected>F</option>
-								</select>
+								<label>시설</label>
+								<input type="text" name="commentPlace" class="form-control" maxlength="5"><span>/ 10.0</span>
 							</div>
 						</div>
 						<div class="modal-footer">

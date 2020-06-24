@@ -6,6 +6,8 @@
 nav{
 	text-align: center;
 	position:fixed; 
+	border-bottom : 1px solid #000000;
+	margin-bottom : 20px;
 	width:100%; 
 	background-color:#FFFFFF; 
 	z-index:999999;

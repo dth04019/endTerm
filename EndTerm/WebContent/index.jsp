@@ -36,7 +36,7 @@
 			return;
 		}
 	%>
-	<nav class="navbar navbar-expand-lg navbar-light "  >
+	<nav class="navbar navbar-expand-lg navbar-light " style="border-bottom : 1px solid #000000; margin-bottom : 10px;"  >
 		<!-- commit trial -->
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
