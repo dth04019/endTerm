@@ -20,6 +20,12 @@
 	</style>
 </head>
 <body>
+<%
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String)session.getAttribute("userID");
+		}
+	%>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
 		
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
@@ -42,9 +48,18 @@
 						회원 관리
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
+						<%
+							if(userID == null) {
+						%>
 						<a class="dropdown-item" href="userLogin.jsp">로그인</a>
 						<a class="dropdown-item" href="userJoin.jsp">회원가입</a>
+						<%
+							} else {
+						%>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
+						<%
+							}
+						%>
 					</div>
 				</li>
 			</ul>
