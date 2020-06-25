@@ -76,6 +76,7 @@
 						<%
 							} else {
 						%>
+						<a class="dropdown-item" href="mypage.jsp">회원정보</a>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
 						<%
 							}
@@ -102,7 +103,7 @@
 		
 			<%
 				ArrayList <commentDTO> commentList = new ArrayList<commentDTO>();
-				commentList = new commentDAO().getList(searchType, search, pageNumber);
+				commentList = new commentDAO().getList();
 			
 				if(commentList != null)
 					for(int i = 0; i < commentList.size(); i++){
