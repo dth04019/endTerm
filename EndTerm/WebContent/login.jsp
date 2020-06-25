@@ -7,8 +7,6 @@
 <title>Our first page</title>
 </head>
 <body>
-	Hello World
-	중복테스트aabc
 	<form action="./userJoinAction.jsp" method="post">
 		<input type="text" name="userID">
 		<input type="password" name="userPassword">
