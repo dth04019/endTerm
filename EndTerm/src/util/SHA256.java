@@ -9,7 +9,7 @@ public class SHA256 {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
 			//원하는 솔트값 넣기
-			byte[] salt = "Hello! This is Salt.".getBytes();
+			byte[] salt = "정연우,이재홍,신기철".getBytes();
 			digest.reset();
 			digest.update(salt);
 			byte[] chars = digest.digest(input.getBytes("UTF-8"));

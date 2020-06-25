@@ -19,7 +19,7 @@
 		if(userID == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('로그린을 해주세요.');");
+			script.println("alert('로그인을 해주세요.');");
 			script.println("location.href = 'userLogin.jsp'");
 			script.println("</script>");
 			script.close();

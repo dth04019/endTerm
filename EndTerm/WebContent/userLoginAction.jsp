@@ -24,7 +24,7 @@
 		return;
 	}
 	userDAO UserDAO = new userDAO();
-	int result = UserDAO.login(userID, userPassword);
+	int result = UserDAO.login(userID, SHA256.getSHA256(userPassword));
 	if(result == 1) {
 		session.setAttribute("userID", userID);
 		PrintWriter script = response.getWriter();
