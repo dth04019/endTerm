@@ -7,7 +7,7 @@
 <title>Our first page</title>
 </head>
 <body>
-	Test2
+	Test1324
 	<form action="./userJoinAction.jsp" method="post">
 		<input type="text" name="userID">
 		<input type="password" name="userPassword">
