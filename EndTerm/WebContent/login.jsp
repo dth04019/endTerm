@@ -8,7 +8,7 @@
 </head>
 <body>
 	Hello World
-	중복테스트
+	중복테스트aa
 	<form action="./userJoinAction.jsp" method="post">
 		<input type="text" name="userID">
 		<input type="password" name="userPassword">
