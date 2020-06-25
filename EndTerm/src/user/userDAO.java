@@ -3,11 +3,63 @@ package user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import util.databaseUtil;
 
 public class userDAO {		//데이터 접근  개체
 
+	public userDTO getUser(String userID) {
+		String SQL = "";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		userDTO user = null;
+		
+		try {
+			SQL = "SELECT * FROM USER WHERE userID = ?";
+			conn = databaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);			
+
+			pstmt.setString(1, userID);
+
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user = new userDTO(
+					rs.getString(1),
+					rs.getString(2),
+					rs.getString(3),
+					rs.getString(4),
+					rs.getBoolean(5)
+				);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}
+	
 	public int login(String userID, String userPassword) {
 		String SQL = "SELECT userPassword FROM USER WHERE userID = ?";
 		Connection conn = null;
@@ -54,6 +106,47 @@ public class userDAO {		//데이터 접근  개체
 			}
 		}
 		return -2;
+	}
+	
+	public int update(String userID, String userPassword) {
+		String SQL = "update jspendterm.USER set userPassword = ? where userID = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = databaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			
+			pstmt.setString(1, userPassword);
+			pstmt.setString(2, userID);
+
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
 	}
 	
 	public int join(userDTO user) {

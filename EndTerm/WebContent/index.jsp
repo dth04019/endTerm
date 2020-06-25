@@ -57,6 +57,7 @@
 						<%
 							} else {
 						%>
+						<a class="dropdown-item" href="mypage.jsp">회원정보</a>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
 						<%
 							}
