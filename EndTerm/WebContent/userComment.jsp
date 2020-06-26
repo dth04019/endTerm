@@ -103,7 +103,7 @@
 		
 			<%
 				ArrayList <commentDTO> commentList = new ArrayList<commentDTO>();
-				commentList = new commentDAO().getList();
+				commentList = new commentDAO().getList(searchType, search, pageNumber);
 			
 				if(commentList != null)
 					for(int i = 0; i < commentList.size(); i++){
