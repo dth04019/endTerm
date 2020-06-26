@@ -101,11 +101,12 @@
 			<h3 class="title"><%= gallery.getGalleryTitle() %></h3>
 			<p class="author"> 작가 : <%=gallery.getGalleryAuthor() %> 분 </p>
 			<p class="txt"> <%= gallery.getGalleryStart() %> - <%= gallery.getGalleryEnd() %></p>
-			
+			<button onclick="location.href='reservation.jsp?galleryId=<%=galleryId %>'" type="submit" style="float:right;" class="btn btn-danger">예매</button>
 			<div class="placecontainer">
 				<p class="place"> <%= gallery.getGalleryPlace() %>
 			</div>
 		</div>
+	
 		
 		<div class="detailcontainer">
   		 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
