@@ -104,10 +104,9 @@ public class reservationDAO {
 
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				if(rs.getString(1).equals(userID)) {
+				if(rs.getString("userID").equals(userID)) {
 					return 1;
 				}
-				else return 0;
 			}
 			
 			return 0;
