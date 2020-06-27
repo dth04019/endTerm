@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="gallery.galleryDTO" %>
 <%@ page import="gallery.galleryDAO" %>
+<%@ page import="reservation.reservationDTO"%>
+<%@ page import="reservation.reservationDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +54,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String)session.getAttribute("userID");
+		}
+		
+	%>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
 		
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
@@ -94,6 +102,9 @@
 	
 	galleryDTO gallery = new galleryDTO();
 	gallery = new galleryDAO().getGallery(galleryId);
+	
+	reservationDAO ReservationDAO = new reservationDAO();
+	int result = ReservationDAO.search(galleryId, userID);
 %>
 
 	<section class="container">
@@ -101,7 +112,17 @@
 			<h3 class="title"><%= gallery.getGalleryTitle() %></h3>
 			<p class="author"> 작가 : <%=gallery.getGalleryAuthor() %> 분 </p>
 			<p class="txt"> <%= gallery.getGalleryStart() %> - <%= gallery.getGalleryEnd() %></p>
+			<%
+				if(result==0){
+			%>
 			<button onclick="location.href='reservation.jsp?galleryId=<%=galleryId %>'" type="submit" style="float:right;" class="btn btn-danger">예매</button>
+			<%
+				} else {
+			%>
+			<button onclick="location.href='reservationcancel.jsp?galleryId=<%=galleryId %>'" type="submit" style="float:right;" class="btn btn-danger">예매취소</button>
+			<%
+				}
+			%>
 			<div class="placecontainer">
 				<p class="place"> <%= gallery.getGalleryPlace() %>
 			</div>
