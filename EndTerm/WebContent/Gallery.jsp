@@ -111,10 +111,18 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		String gallerySearch = "";
+		int pageNumber = 0;
 		if(request.getParameter("gallerySearch") != null) {
 			gallerySearch = request.getParameter("gallerySearch");
 		}
-		System.out.println(gallerySearch);
+		if(request.getParameter("pageNumber") != null) {
+			try{
+				pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+			} catch(Exception e) {
+				System.out.println("검색 페이지 번호 오류");
+			}
+			
+		}
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
 		
@@ -163,11 +171,13 @@
 					<ul id="shows_list" class="inner clearfix">	
 		<%
 			ArrayList <galleryDTO> galleryList = new ArrayList<galleryDTO>();
-			galleryList = new galleryDAO().getList(gallerySearch);
+			galleryList = new galleryDAO().getList(gallerySearch, pageNumber);
 			
 		
 			if(galleryList != null)
 				for(int i = 0; i < galleryList.size(); i++){
+					if(i == 5)
+						break;
 				
 					galleryDTO gallery = galleryList.get(i);
 						
@@ -234,7 +244,37 @@
 			
 		</article>
 	</div>
-		
+	
+	<ul class="pagination justify-content-center mt-3">
+		<li class="page-item">
+		<%
+			if(pageNumber <= 0) {
+		%>
+			<a class="page-link disabled">이전</a>
+		<%
+			} else {
+		%>
+			<a class="page-link" href="./userComment.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
+			<%= pageNumber - 1 %>">이전</a>
+		<%
+			}
+		%>
+		</li>
+		<li>
+		<%
+			if(galleryList.size() < 6) {
+		%>
+			<a class="page-link disabled">다음</a>
+		<%
+			} else {
+		%>
+			<a class="page-link" href="./userComment.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
+			<%= pageNumber + 1 %>">다음</a>
+		<%
+			}
+		%>
+		</li>
+	</ul>
 	
 	<footer class="bg-	dark mt-4 p-5 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 16 모바일공학과 정연우, 이재홍, 신기철. All rights reserved

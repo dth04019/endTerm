@@ -58,7 +58,7 @@
 			
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="index.jsp">전시회</a>
+					<a class="nav-link" href="gallery.jsp">전시회</a>
 				</li>				
 				<li class="nav-item active">
 					<a class="nav-link" href="userComment.jsp">관람 후기</a>
@@ -107,6 +107,8 @@
 			
 				if(commentList != null)
 					for(int i = 0; i < commentList.size(); i++){
+						if(i == 5)
+							break;
 					
 						commentDTO comment = commentList.get(i);
 						int galleryID = comment.getGalleryID();
