@@ -144,8 +144,8 @@
 	</nav>
 
 	<div class="wrap2">
-		<a href="Gallery.jsp" class="cate active">Current</a>
-		<a href="GalleryPast.jsp" class="cate">Past</a>
+		<a href="Gallery.jsp" class="cate">Current</a>
+		<a href="GalleryPast.jsp" class="cate active">Past</a>
 	</div>
 	<div class="wrap3 bdt">
 		<article class="main">
