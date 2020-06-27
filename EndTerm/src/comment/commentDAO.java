@@ -21,7 +21,6 @@ public class commentDAO {
 			SQL = "SELECT * FROM COMMENT";
 			conn = databaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
-			
 
 			rs = pstmt.executeQuery();
 			commentList = new ArrayList<commentDTO>();

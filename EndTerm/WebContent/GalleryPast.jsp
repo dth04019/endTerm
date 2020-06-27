@@ -4,6 +4,7 @@
 <%@ page import="gallery.galleryDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,7 +149,7 @@
 	</div>
 	<div class="wrap3 bdt">
 		<article class="main">
-			<h4>Show This Week</h4>
+			<h4>Past Shows</h4>
 			<p></p>
 				<div class="more_grid_wrap">
 					<ul id="shows_list" class="inner clearfix">	
@@ -161,6 +162,8 @@
 				for(int i = 0; i < galleryList.size(); i++){
 				
 					galleryDTO gallery = galleryList.get(i);
+					
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 						
 					Date now = new Date();
 								
@@ -168,7 +171,7 @@
 						
 					long calDate=  gallery.getGalleryEnd().getTime() - now.getTime();
 					long calDateDays = calDate/(24*60*60*1000);
-					if(calDateDays >= 0 && calDateDays <= 7){
+					if(calDateDays < 0){
 		%>			
 		
 					<li class="con">
@@ -187,41 +190,6 @@
 					</ul>
 				</div>
 				
-			<p></p>
-			<p></p>	
-			<h4>Featured Shows</h4>
-			<p></p>
-				<div class="more_grid_wrap">
-					<ul id="shows_list" class="inner clearfix">	
-		<%
-			if(galleryList != null)
-				for(int i = 0; i < galleryList.size(); i++){
-				
-					galleryDTO gallery = galleryList.get(i);
-					
-					Date now = new Date();
-					
-					gallery.getGalleryEnd();
-						
-					long calDate=  gallery.getGalleryEnd().getTime() - now.getTime();
-					long calDateDays = calDate/(24*60*60*1000);
-					if(calDateDays >= 0){
-		%>	
-					<li class="con">
-						<div class="scale">
-							<% int galleryId = gallery.getGalleryID(); %>
-							<a href="GalleryDetail.jsp?galleryId=<%=galleryId %>" class="thumb"><img src=<%= gallery.getGalleryThumbnail() %> alt="작품 썸네일" /></a>
-						</div>	
-						<p class="name"><%= gallery.getGalleryTitle() %></p>
-						<p class="txt"> <%= gallery.getGalleryPlace() %></p>
-						<p class="date"> <%= gallery.getGalleryStart() %> - <%= gallery.getGalleryEnd() %></p>
-					</li>
-		<%
-					}
-				} 			 		
-		%>
-					</ul>
-				</div>
 			
 		</article>
 	</div>
