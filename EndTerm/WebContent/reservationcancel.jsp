@@ -19,11 +19,11 @@
 		int galleryId = Integer.parseInt(request.getParameter("galleryId"));
 		
 		reservationDAO ReservationDAO = new reservationDAO();
-		int result = ReservationDAO.join(galleryId, userID);
+		int result = ReservationDAO.delete(galleryId, userID);
 		if(result == -1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('이미 예매되었습니다.');");
+			script.println("alert('예매되어 있지 않습니다.');");
 			script.println("location.href = document.referrer;");
 			script.println("</script>");
 			script.close();
@@ -33,7 +33,7 @@
 			session.setAttribute("userID", userID);
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('예매가 완료되었습니다');");
+			script.println("alert('예매가 취소되었습니다');");
 			script.println("location.href = document.referrer;");
 			script.println("</script>");
 			script.close();

@@ -177,7 +177,7 @@
 					<li class="con">
 						<div class="scale">
 							<% int galleryId = gallery.getGalleryID(); %>
-							<a href="GalleryDetail.jsp?galleryId=<%=galleryId %>" class="thumb"><img src=<%= gallery.getGalleryThumbnail() %> alt="작품 썸네일" /></a>
+							<a href="GalleryDetailPast.jsp?galleryId=<%=galleryId %>" class="thumb"><img src=<%= gallery.getGalleryThumbnail() %> alt="작품 썸네일" /></a>
 						</div>	
 						<p class="name"><%= gallery.getGalleryTitle() %></p>
 						<p class="txt"> <%= gallery.getGalleryPlace() %></p>
