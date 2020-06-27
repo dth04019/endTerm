@@ -92,7 +92,7 @@ public class reservationDAO {
 	}
 	
 	public int search(int galleryID, String userID) {
-		String SQL = "SELECT userID FROM USER WHERE galleryID = ?";
+		String SQL = "SELECT userID FROM RESERVATION WHERE galleryID = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -100,17 +100,17 @@ public class reservationDAO {
 			conn = databaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			
-			pstmt.setString(1, userID);
+			pstmt.setInt(1, galleryID);
 
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString(1).equals(userID)) {
-					return 1;		
+					return 1;
 				}
 				else return 0;
 			}
 			
-			return -1;
+			return 0;
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -136,7 +136,7 @@ public class reservationDAO {
 				e.printStackTrace();
 			}
 		}
-		return -2;
+		return 0;
 	}
 	
 }

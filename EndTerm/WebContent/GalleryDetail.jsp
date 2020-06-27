@@ -83,10 +83,19 @@
 						회원 관리
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
+						<%
+							if(userID == null) {
+						%>
 						<a class="dropdown-item" href="userLogin.jsp">로그인</a>
 						<a class="dropdown-item" href="userJoin.jsp">회원가입</a>
+						<%
+							} else {
+						%>
 						<a class="dropdown-item" href="mypage.jsp">회원정보</a>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
+						<%
+							}
+						%>
 					</div>
 				</li>
 			</ul>
@@ -113,13 +122,13 @@
 			<p class="author"> 작가 : <%=gallery.getGalleryAuthor() %> 분 </p>
 			<p class="txt"> <%= gallery.getGalleryStart() %> - <%= gallery.getGalleryEnd() %></p>
 			<%
-				if(result==0){
-			%>
-			<button onclick="location.href='reservation.jsp?galleryId=<%=galleryId %>'" type="submit" style="float:right;" class="btn btn-danger">예매</button>
-			<%
-				} else {
+				if(result == 1){
 			%>
 			<button onclick="location.href='reservationcancel.jsp?galleryId=<%=galleryId %>'" type="submit" style="float:right;" class="btn btn-danger">예매취소</button>
+			<%
+				} else if(result == 0){
+			%>
+			<button onclick="location.href='reservation.jsp?galleryId=<%=galleryId %>'" type="submit" style="float:right;" class="btn btn-danger">예매</button>
 			<%
 				}
 			%>

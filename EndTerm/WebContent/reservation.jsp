@@ -24,7 +24,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('이미 예매되었습니다.');");
-			script.println("location.href = 'GalleryDetail.jsp?galleryId=galleryId'");
+			script.println("location.href = document.referrer;");
 			script.println("</script>");
 			script.close();
 			return;
@@ -34,7 +34,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('예매가 완료되었습니다');");
-			script.println("location.href = 'GalleryDetail.jsp?galleryId=galleryId'");
+			script.println("location.href = document.referrer;");
 			script.println("</script>");
 			script.close();
 			return;
