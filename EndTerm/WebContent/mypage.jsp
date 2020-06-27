@@ -229,6 +229,10 @@
 					long calDate=  gallery.getGalleryEnd().getTime() - now.getTime();
 					long calDateDays = calDate/(24*60*60*1000);
 					int galleryId = gallery.getGalleryID();
+					if(calDateDays < 0){
+						ReservationDAO.delete(galleryId, userID);
+					}
+
 					int result = ReservationDAO.search(galleryId, userID);
 					if(result==1){
 		%>			
