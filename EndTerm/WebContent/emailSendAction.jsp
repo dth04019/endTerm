@@ -38,7 +38,7 @@
 		return;
 	}
 	
-	String host = "http://localhost:8080/EndTerm/";
+	String host = "http://localhost:8080/endTerm/";
 	String from = "htt0099@gmail.com";
 	String to = UserDAO.getUserEmail(userID);
 	String subject = "회원가입을 위한 이메인 일증 메일입니다.";
@@ -94,8 +94,8 @@
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
 		
-			<form class="form-inline my-2 my-lg:0">
-				<input class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요." aria-label="Search">
+			<form action="./Gallery.jsp" method="get" class="form-inline my-2 my-lg:0">
+				<input type="text" name="gallerySearch" class="form-control mr-sm-2" type="search" placeholder="전시회를 입력하세요." aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
 			</form>
 			

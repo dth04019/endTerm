@@ -27,8 +27,8 @@
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
 		
-			<form class="form-inline my-2 my-lg:0">
-				<input class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요." aria-label="Search">
+			<form action="./Gallery.jsp" method="get" class="form-inline my-2 my-lg:0">
+				<input type="text" name="gallerySearch" class="form-control mr-sm-2" type="search" placeholder="전시회를 입력하세요." aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
 			</form>
 			

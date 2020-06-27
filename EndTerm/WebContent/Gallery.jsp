@@ -4,12 +4,13 @@
 <%@ page import="gallery.galleryDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Insert title here</title>
+	<title>전시회</title>
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="./css/custom.css">
 	<style>
@@ -107,13 +108,21 @@
 	
 </head>
 <body>
+	<%
+		request.setCharacterEncoding("UTF-8");
+		String gallerySearch = "";
+		if(request.getParameter("gallerySearch") != null) {
+			gallerySearch = request.getParameter("gallerySearch");
+		}
+		System.out.println(gallerySearch);
+	%>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
 		
 		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
 		
-			<form class="form-inline my-2 my-lg:0">
-				<input class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요." aria-label="Search">
+			<form action="./Gallery.jsp" method="get" class="form-inline my-2 my-lg:0">
+				<input type="text" name="gallerySearch" class="form-control mr-sm-2" type="search" placeholder="전시회를 입력하세요." aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
 			</form>
 			
@@ -154,7 +163,7 @@
 					<ul id="shows_list" class="inner clearfix">	
 		<%
 			ArrayList <galleryDTO> galleryList = new ArrayList<galleryDTO>();
-			galleryList = new galleryDAO().getList();
+			galleryList = new galleryDAO().getList(gallerySearch);
 			
 		
 			if(galleryList != null)
