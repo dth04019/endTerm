@@ -171,7 +171,7 @@
 					<ul id="shows_list" class="inner clearfix">	
 		<%
 			ArrayList <galleryDTO> galleryList = new ArrayList<galleryDTO>();
-			galleryList = new galleryDAO().getList(gallerySearch, pageNumber);
+			galleryList = new galleryDAO().getList();
 			
 		
 			if(galleryList != null)
