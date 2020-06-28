@@ -10,7 +10,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>전시회 소개</title>
+	<title>과거 전시회 소개</title>
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="./css/custom.css">
 	<style>
@@ -108,6 +108,13 @@
 	
 </head>
 <body>
+	<%
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String)session.getAttribute("userID");
+		}
+		
+	%>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
 		
 		<a class = "navbar-brand" href="index.jsp">개인 전시회 홍보사이트</a>
@@ -120,20 +127,29 @@
 			
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="index.jsp">전시회</a>
+					<a class="nav-link" href="./Gallery.jsp">전시회</a>
 				</li>				
 				<li class="nav-item active">
-					<a class="nav-link" href="index.jsp">관람 후기</a>
+					<a class="nav-link" href="./userComment.jsp">관람 후기</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">
 						마이페이지
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
+						<%
+							if(userID == null) {
+						%>
 						<a class="dropdown-item" href="userLogin.jsp">로그인</a>
 						<a class="dropdown-item" href="userJoin.jsp">회원가입</a>
+						<%
+							} else {
+						%>
 						<a class="dropdown-item" href="mypage.jsp">회원정보</a>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
+						<%
+							}
+						%>
 					</div>
 				</li>
 			</ul>

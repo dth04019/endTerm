@@ -71,10 +71,10 @@
 		</button>
 	</nav>
 	<div class="container">
-		<div class="jumbotron" style="padding: 2rem 1rem;">
+		<div class="jumbotron" style="padding: 15px 3px; background: #91EAE4;">
 			<div class="container">
-				<h1>웹 사이트</h1>
-				<p>본 웹 사이트는 개인 전시회를 홍보하기 위한 목적임을 알려드립니다.
+				<h1>개인 전시 홍보</h1>
+				<p>본 웹 사이트는 개인 전시회를 홍보 및 정보 제공 목적으로 만들어진 사이트임을 알려드립니다.
 				<p><a class="btn btn-primary btn-pull" href="#" role="button"> 자세히 알아보기</a></p>
 			</div>
 		</div>

@@ -101,10 +101,10 @@
 			
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="index.jsp">전시회</a>
+					<a class="nav-link" href="./Gallery.jsp">전시회</a>
 				</li>				
 				<li class="nav-item active">
-					<a class="nav-link" href="userComment.jsp">관람 후기</a>
+					<a class="nav-link" href="./userComment.jsp">관람 후기</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">
@@ -119,6 +119,7 @@
 						<%
 							} else {
 						%>
+						<a class="dropdown-item" href="mypage.jsp">회원정보</a>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
 						<%
 							}
