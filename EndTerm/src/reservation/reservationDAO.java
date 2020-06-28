@@ -8,7 +8,7 @@ import util.databaseUtil;
 public class reservationDAO {
 	
 	public int join(int galleryID, String userID) {
-		String SQL = "INSERT INTO RESERVATION VALUES(?, ?)";
+		String SQL = "INSERT INTO RESERVATION VALUES(?, ?, NULL)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
