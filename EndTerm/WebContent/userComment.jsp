@@ -17,7 +17,7 @@
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="./css/custom.css">
 	<style>
-		.card-body{
+		.card-body {
 			margin-bottom: 10px;
 		}
 	</style>

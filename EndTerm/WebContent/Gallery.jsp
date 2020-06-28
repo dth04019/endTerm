@@ -26,7 +26,7 @@
 		.wrap3 {
 			margin-top: 50px
 		}
-		.main{
+		.main {
 			margin : 0 20px;
 		}
 		.wrap3 .inner {
