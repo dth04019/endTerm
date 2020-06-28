@@ -10,16 +10,18 @@ public class commentDTO {
 	private double commentAccessibility;
 	private double commentArt;
 	private double commentPlace;
+	private String galleryTitle;
 	
 	public commentDTO() {		
 	}
 	
 	public commentDTO(int commentID, String userID, int galleryID, String commentTitle, String commentContent,
-			double commentTotal, double commentAccessibility, double commentArt, double commentPlace, int likeCount) {
+			double commentTotal, double commentAccessibility, double commentArt, double commentPlace, int likeCount, String galleryTitle) {
 		super();
 		this.commentID = commentID;
 		this.userID = userID;
 		this.galleryID = galleryID;
+		this.galleryTitle = galleryTitle;
 		this.commentTitle = commentTitle;
 		this.commentContent = commentContent;
 		this.commentTotal = commentTotal;
@@ -45,6 +47,12 @@ public class commentDTO {
 	}
 	public void setGalleryID(int galleryID) {
 		this.galleryID = galleryID;
+	}
+	public String getGalleryTitle() {
+		return galleryTitle;
+	}
+	public void setGalleryTitle(String galleryTitle) {
+		this.galleryTitle = galleryTitle;
 	}
 	public String getCommentTitle() {
 		return commentTitle;

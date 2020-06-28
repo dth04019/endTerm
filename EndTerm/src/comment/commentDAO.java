@@ -35,7 +35,8 @@ public class commentDAO {
 					rs.getDouble(7),
 					rs.getDouble(8),
 					rs.getDouble(9),
-					rs.getInt(10)
+					rs.getInt(10),
+					rs.getString(11)
 				);
 				commentList.add(comment);
 			}
@@ -70,7 +71,7 @@ public class commentDAO {
 	
 	
 	public int write(commentDTO comment) {
-		String SQL = "INSERT INTO COMMENT VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
+		String SQL = "INSERT INTO COMMENT VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -86,6 +87,7 @@ public class commentDAO {
 			pstmt.setDouble(6, comment.getCommentAccessibility());
 			pstmt.setDouble(7, comment.getCommentArt());
 			pstmt.setDouble(8, comment.getCommentPlace());
+			pstmt.setString(9, comment.getGalleryTitle());
 
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -124,11 +126,11 @@ public class commentDAO {
 		ResultSet rs = null;
 		try {
 			if(searchType.equals("최신순")) {
-				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent) LIKE ? ORDER BY commentID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6; 
+				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent, galleryTitle) LIKE ? ORDER BY commentID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6; 
 			} else if(searchType.equals("추천순" )) {
-				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent) LIKE ? ORDER BY likeCount DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
+				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent, galleryTitle) LIKE ? ORDER BY likeCount DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
 			} else if(searchType.equals("전시회 별" )) {
-				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent) LIKE ? ORDER BY galleryID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
+				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent, galleryTitle) LIKE ? ORDER BY galleryID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
 			}
 			conn = databaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -149,7 +151,8 @@ public class commentDAO {
 					rs.getDouble(7),
 					rs.getDouble(8),
 					rs.getDouble(9),
-					rs.getInt(10)
+					rs.getInt(10),
+					rs.getString(11)
 				);
 				commentList.add(comment);
 			}

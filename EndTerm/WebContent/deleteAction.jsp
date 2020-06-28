@@ -33,7 +33,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('삭제가 완료되었습니다.');");
-			script.println("location.href = 'index.jsp'");
+			script.println("location.href = 'userComment.jsp'");
 			script.println("</script>");
 			script.close();
 			return;

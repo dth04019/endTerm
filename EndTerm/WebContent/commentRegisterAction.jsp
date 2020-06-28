@@ -27,7 +27,7 @@
 	double commentAccessibility = 0;
 	double commentArt = 0;
 	double commentPlace = 0;  
-	
+	String galleryTitle = "";
 
 	if(request.getParameter("galleryTitle") != null){
 		galleryID = Integer.parseInt(request.getParameter("galleryTitle"));
@@ -50,6 +50,9 @@
 	if(request.getParameter("commentPlace") != null){
 		commentPlace = Double.parseDouble(request.getParameter("commentPlace"));
 	}
+	if(request.getParameter("galleryTitle") != null){
+		galleryTitle = request.getParameter("galleryTitle");
+	}
 	
 	if(galleryID == 0 || commentTitle == null || commentContent == null || commentTotal == 0 || commentAccessibility == 0
 			|| commentArt == 0 || commentPlace == 0 || commentTitle.equals("") || commentContent.equals("")){
@@ -64,7 +67,7 @@
 	
 	commentDAO comment= new commentDAO();
 	int result = comment.write(new commentDTO(0, userID, galleryID, commentTitle, commentContent, commentTotal, commentAccessibility, 
-									commentArt, commentPlace, 0));
+									commentArt, commentPlace, 0, galleryTitle));
 	
 	if(result == -1){
 		PrintWriter script = response.getWriter();
