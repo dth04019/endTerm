@@ -17,6 +17,7 @@
 		if(session.getAttribute("userID") != null) {
 			userID = (String)session.getAttribute("userID");
 		}
+		
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light " style="border-bottom : 1px solid #000000; margin-bottom : 10px;"  >
 		<!-- commit trial -->
