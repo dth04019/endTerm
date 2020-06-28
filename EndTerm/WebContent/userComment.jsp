@@ -93,6 +93,7 @@
 		<form method="get" action="./userComment.jsp" class="form-inline mt-3">
 			<select name="searchType" class="form-control mx-1 mt-2">
 				<option value="최신순">최신순</option>
+				<option value="전시회 별" <% if(searchType.equals("전시회 별")) out.println("selected"); %>>전시회 별</option>
 				<option value="추천순" <% if(searchType.equals("추천순")) out.println("selected"); %>>추천순</option>
 			</select>
 			<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요">

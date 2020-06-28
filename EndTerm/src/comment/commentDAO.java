@@ -127,6 +127,8 @@ public class commentDAO {
 				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent) LIKE ? ORDER BY commentID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6; 
 			} else if(searchType.equals("추천순" )) {
 				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent) LIKE ? ORDER BY likeCount DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
+			} else if(searchType.equals("전시회 별" )) {
+				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent) LIKE ? ORDER BY galleryID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
 			}
 			conn = databaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
