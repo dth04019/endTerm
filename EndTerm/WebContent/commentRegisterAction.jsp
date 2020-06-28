@@ -26,7 +26,7 @@
 	double commentTotal = 0;
 	double commentAccessibility = 0;
 	double commentArt = 0;
-	double commentPlace = 0;  
+	double commentPlace = 0;
 	String galleryTitle = "";
 
 	if(request.getParameter("galleryTitle") != null){

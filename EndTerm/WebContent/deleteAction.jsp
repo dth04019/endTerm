@@ -21,6 +21,7 @@
 		return;
 	}
 
+	
 	request.setCharacterEncoding("UTF-8");
 	String commentID = null;
 	if(request.getParameter("commentID") != null) {
