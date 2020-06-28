@@ -228,6 +228,8 @@
 		<%
 			if(galleryList != null)
 				for(int i = 0; i < galleryList.size(); i++){
+					if(i == 4)
+						break;
 				
 					galleryDTO gallery = galleryList.get(i);
 					
@@ -275,7 +277,7 @@
 		</li>
 		<li>
 		<%
-			if(galleryList.size() < 6) {
+			if(galleryList.size() < 5) {
 		%>
 			<a class="page-link disabled">다음</a>
 		<%
