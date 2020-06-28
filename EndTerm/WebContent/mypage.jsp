@@ -183,7 +183,7 @@
 		user = new userDAO().getUser(userID);
 	%>
 
-	<section class="container mt-5"  style="max-width: 560px;">
+	<section class="container mt-5">
 		<form method="post" action="./userRepassword.jsp">
 			<div class="form-group">
 				<a>아이디 : <%=user.getUserID() %></a>
@@ -193,11 +193,11 @@
 			</div>
 			<div class="form-group">
 				<label>비밀번호</label>
-				<input type="password" name="userPassword" class="form-control">
+				<input type="password" name="userPassword" class="form-control" style="max-width: 300px;">
 			</div>
 			<div class="form-group">
 				<label>새로운 비밀번호</label>
-				<input type="password" name="usernewPassword" class="form-control">
+				<input type="password" name="usernewPassword" class="form-control" style="max-width: 300px;">
 			</div>
 			<button type="submit" class="btn btn-primary">비밀번호 변경</button>
 		</form>			
@@ -229,6 +229,10 @@
 					long calDate=  gallery.getGalleryEnd().getTime() - now.getTime();
 					long calDateDays = calDate/(24*60*60*1000);
 					int galleryId = gallery.getGalleryID();
+					if(calDateDays < 0){
+						ReservationDAO.delete(galleryId, userID);
+					}
+
 					int result = ReservationDAO.search(galleryId, userID);
 					if(result==1){
 		%>			
