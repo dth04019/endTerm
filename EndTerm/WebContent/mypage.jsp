@@ -211,15 +211,11 @@
 					<ul id="shows_list" class="inner clearfix">	
 		<%
 			ArrayList <galleryDTO> galleryList = new ArrayList<galleryDTO>();
-			galleryList = new galleryDAO().getList(gallerySearch, pageNumber);
-			
+			galleryList = new galleryDAO().getListreservation(userID);
 			reservationDAO ReservationDAO = new reservationDAO();
-		
 			if(galleryList != null)
 				for(int i = 0; i < galleryList.size(); i++){
-					if(i == 5)
-						break;
-				
+					
 					galleryDTO gallery = galleryList.get(i);
 						
 					Date now = new Date();
@@ -232,11 +228,8 @@
 					if(calDateDays < 0){
 						ReservationDAO.delete(galleryId, userID);
 					}
-
-					int result = ReservationDAO.search(galleryId, userID);
-					if(result==1){
+					if(calDateDays >= 0){
 		%>			
-		
 					<li class="con">
 						<div class="scale">
 							<a href="GalleryDetail.jsp?galleryId=<%=galleryId %>" class="thumb"><img src=<%= gallery.getGalleryThumbnail() %> alt="작품 썸네일" /></a>
@@ -263,7 +256,7 @@
 		<%
 			} else {
 		%>
-			<a class="page-link" href="./Gallery.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
+			<a class="page-link" href="./mypage.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
 			<%= pageNumber - 1 %>">이전</a>
 		<%
 			}
@@ -271,13 +264,13 @@
 		</li>
 		<li>
 		<%
-			if(galleryList.size() < 6) {
+			if(galleryList.size() < 5) {
 		%>
 			<a class="page-link disabled">다음</a>
 		<%
 			} else {
 		%>
-			<a class="page-link" href="./Gallery.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
+			<a class="page-link" href="./mypage.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
 			<%= pageNumber + 1 %>">다음</a>
 		<%
 			}
