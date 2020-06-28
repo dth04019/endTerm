@@ -103,7 +103,7 @@ public class reservationDAO {
 			pstmt.setInt(1, galleryID);
 
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				if(rs.getString("userID").equals(userID)) {
 					return 1;
 				}
