@@ -92,7 +92,7 @@ public class reservationDAO {
 	}
 	
 	public int search(int galleryID, String userID) {
-		String SQL = "SELECT userID FROM RESERVATION WHERE galleryID = ?";
+		String SQL = "SELECT * FROM RESERVATION WHERE galleryID = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

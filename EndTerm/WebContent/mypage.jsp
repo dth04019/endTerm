@@ -263,7 +263,7 @@
 		<%
 			} else {
 		%>
-			<a class="page-link" href="./userComment.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
+			<a class="page-link" href="./Gallery.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
 			<%= pageNumber - 1 %>">이전</a>
 		<%
 			}
@@ -277,7 +277,7 @@
 		<%
 			} else {
 		%>
-			<a class="page-link" href="./userComment.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
+			<a class="page-link" href="./Gallery.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
 			<%= pageNumber + 1 %>">다음</a>
 		<%
 			}

@@ -141,7 +141,7 @@ public class galleryDAO {
 		ArrayList<galleryDTO> galleryList= null;
 		
 		try {
-			SQL = "SELECT * FROM GALLERY WHERE galleryTitle LIKE ? ORDER BY galleryID DESC LIMIT " + pageNumber * 5 + 6;
+			SQL = "SELECT * FROM GALLERY WHERE galleryTitle LIKE ? ORDER BY galleryID DESC LIMIT " + pageNumber * 4 + ", " + pageNumber * 4 + 5;
 			conn = databaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			
