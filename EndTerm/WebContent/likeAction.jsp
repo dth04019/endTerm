@@ -37,7 +37,6 @@
 
 	request.setCharacterEncoding("UTF-8");
 	String commentID = null;
-	System.out.println("comment parameter is " + request.getParameter("commentID"));
 	if(request.getParameter("commentID") != null) {
 		commentID = (String)request.getParameter("commentID");
 	}
@@ -64,10 +63,11 @@
 			return;
 		}
 	} else {
+		result = CommentDAO.unlike(commentID);
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('이미 추천하신 후기입니다.');");
-		script.println("history.back();");
+		script.println("alert('추천을 취소하였습니다.');");
+		script.println("location.href = 'userComment.jsp'");
 		script.println("</script>");
 		script.close();
 		return;

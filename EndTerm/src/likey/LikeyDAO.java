@@ -16,15 +16,46 @@ public class LikeyDAO {
 		try {
 			conn = databaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
-			System.out.println("userID is " + userID);
-			System.out.println("commentID is " + commentID);
-			System.out.println("userIP is " + userIP);
 			pstmt.setString(1, userID);
 			pstmt.setString(2, commentID);
 			pstmt.setString(3, userIP);
 
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		SQL = "DELETE FROM LIKEY WHERE userID=? AND commentID=? AND userIP=?";
+		try {
+			conn = databaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, commentID);
+			pstmt.setString(3, userIP);
+			pstmt.executeUpdate();
+			return -1;
+		} catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {

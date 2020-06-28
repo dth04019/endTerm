@@ -124,9 +124,9 @@ public class commentDAO {
 		ResultSet rs = null;
 		try {
 			if(searchType.equals("최신순")) {
-				SQL = "SELECT * FROM COMMENT WHERE commentTitle LIKE ? ORDER BY commentID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6; 
+				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent) LIKE ? ORDER BY commentID DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6; 
 			} else if(searchType.equals("추천순" )) {
-				SQL = "SELECT * FROM COMMENT WHERE commentTitle LIKE ? ORDER BY likeCount DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
+				SQL = "SELECT * FROM COMMENT WHERE CONCAT(commentTitle, commentContent) LIKE ? ORDER BY likeCount DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
 			}
 			conn = databaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -297,4 +297,41 @@ public class commentDAO {
 		return null; //not existed
 	}
 	
+	public int unlike(String commentID) {
+		String SQL = "UPDATE COMMENT SET likeCount = likeCount - 1 WHERE commentID = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = databaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  Integer.parseInt(commentID));
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1; //DB ERROR
+	}
 }
