@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Insert title here</title>
+	<title>이메일 인증</title>
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" href="./css/custom.css">
 </head>
@@ -28,7 +28,7 @@
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light "  >
 		<!-- commit trial -->
-		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
+		<a class = "navbar-brand" href="index.jsp">개인 전시회 홍보사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
 		
 			<form action="./Gallery.jsp" method="get" class="form-inline my-2 my-lg:0">
@@ -45,7 +45,7 @@
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">
-						회원 관리
+						마이페이지
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
 						<%

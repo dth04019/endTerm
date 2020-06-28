@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Insert title here</title>
+	<title>개인 전시회 홍보관</title>
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="./css/custom.css">
 </head>
@@ -29,7 +29,7 @@
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light " style="border-bottom : 1px solid #000000; margin-bottom : 10px;"  >
 		<!-- commit trial -->
-		<a class = "navbar-brand" href="index.jsp">강의평가 웹사이트</a>
+		<a class = "navbar-brand" href="index.jsp">개인 전시회 홍보사이트</a>
 		<div id="navbar" class="collapse navbar-collapse">
 		
 			<form action="./Gallery.jsp" method="get" class="form-inline my-2 my-lg:0">
@@ -57,7 +57,7 @@
 						<%
 							} else {
 						%>
-						<a class="dropdown-item" href="mypage.jsp">회원정보</a>
+						<a class="dropdown-item" href="mypage.jsp">마이페이지</a>
 						<a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
 						<%
 							}

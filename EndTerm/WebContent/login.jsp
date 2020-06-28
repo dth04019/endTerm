@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Our first page</title>
+<title>로그인</title>
 </head>
 <body>
 	<form action="./userJoinAction.jsp" method="post">
