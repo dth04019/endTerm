@@ -17,15 +17,6 @@
 		if(session.getAttribute("userID") != null) {
 			userID = (String)session.getAttribute("userID");
 		}
-		boolean emailChecked = new userDAO().getUserEmailChecked(userID);
-		if(emailChecked == false) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("location.href = 'emailSendConfirm.jsp'");
-			script.println("</script>");
-			script.close();
-			return;
-		}
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light " style="border-bottom : 1px solid #000000; margin-bottom : 10px;"  >
 		<!-- commit trial -->

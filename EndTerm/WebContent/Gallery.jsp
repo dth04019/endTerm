@@ -5,6 +5,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.net.URLEncoder" %>
+<%@ page import="user.userDAO" %>
+<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,8 +111,21 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("UTF-8");
 		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String)session.getAttribute("userID");
+		}
+		boolean emailChecked = new userDAO().getUserEmailChecked(userID);
+		if(emailChecked == false) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("location.href = 'emailSendConfirm.jsp'");
+			script.println("</script>");
+			script.close();
+			return;
+		}
+		request.setCharacterEncoding("UTF-8");
+		userID = null;
 		if(session.getAttribute("userID") != null) {
 			userID = (String)session.getAttribute("userID");
 		}
