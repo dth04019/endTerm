@@ -38,7 +38,7 @@
 		return;
 	}
 	
-	String host = "http://localhost:8080/endTerm/";
+	String host = "http://localhost:8080/EndTerm/";
 	String from = "htt0099@gmail.com";
 	String to = UserDAO.getUserEmail(userID);
 	String subject = "회원가입을 위한 이메인 일증 메일입니다.";

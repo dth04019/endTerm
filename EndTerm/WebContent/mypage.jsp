@@ -247,38 +247,7 @@
 		</article>
 	</div>
 	
-	<ul class="pagination justify-content-center mt-3">
-		<li class="page-item">
-		<%
-			if(pageNumber <= 0) {
-		%>
-			<a class="page-link disabled">이전</a>
-		<%
-			} else {
-		%>
-			<a class="page-link" href="./mypage.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
-			<%= pageNumber - 1 %>">이전</a>
-		<%
-			}
-		%>
-		</li>
-		<li>
-		<%
-			if(galleryList.size() < 5) {
-		%>
-			<a class="page-link disabled">다음</a>
-		<%
-			} else {
-		%>
-			<a class="page-link" href="./mypage.jsp?gallerySearch<%= URLEncoder.encode(gallerySearch, "UTF-8") %>&pageNumber=
-			<%= pageNumber + 1 %>">다음</a>
-		<%
-			}
-		%>
-		</li>
-	</ul>
-	
-	<footer class="bg-	dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 16 모바일공학과 정연우, 이재홍, 신기철. All rights reserved
 	</footer>
 	<script src="./js/jquery.min.js"></script>

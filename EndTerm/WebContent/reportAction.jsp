@@ -49,8 +49,8 @@
 	
 	
 	String host = "http://localhost:8080/finalProject/";
-	String from = "htt0099@gmail.com";
-	String to = "htt0099@naver.com";
+	String from = "dth04019@gmail.com";
+	String to = "dth04019@naver.com";
 	String subject = "접수된 신고 메일입니다.";
 	String content = "신고자 : " + userID + 
 			"<br>제목 : " + reportTitle +
