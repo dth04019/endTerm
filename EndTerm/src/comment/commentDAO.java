@@ -311,6 +311,7 @@ public class commentDAO {
 			conn = databaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1,  Integer.parseInt(commentID));
+			
 			return pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();

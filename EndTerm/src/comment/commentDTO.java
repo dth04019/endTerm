@@ -4,13 +4,13 @@ public class commentDTO {
 	private int commentID;
 	private String userID;
 	private int galleryID;
+	private String galleryTitle;
 	private String commentTitle;
 	private String commentContent;
 	private double commentTotal;
 	private double commentAccessibility;
 	private double commentArt;
 	private double commentPlace;
-	private String galleryTitle;
 	
 	public commentDTO() {		
 	}
