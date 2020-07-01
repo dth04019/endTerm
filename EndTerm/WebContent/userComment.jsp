@@ -155,7 +155,7 @@
 						<span style="color: green;">(추천: <%= comment.getLikeCount() %>)</span>
 					</div>
 					<div class="col-3 text-right">
-						<a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?commentID=<%= comment.getCommentID() %>">추천</a>
+						<a onclick="return confirm('추천하시겠습니까?\n이미 추천한 경우 추천이 취소됩니다.')" href="./likeAction.jsp?commentID=<%= comment.getCommentID() %>">추천</a>
 						<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?commentID=<%= comment.getCommentID() %>">삭제</a>
 					</div>
 				</div>
